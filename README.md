@@ -30,4 +30,4 @@ var employeeTimes = employeeTimeClient.list(EmployeeTime.queryBuilder()
 response.println(employeeTimes);
 ```
 
-> **Note:** In the examples, SAP API Hub Sandbox system was used
+> **Note:** In the examples SAP API Hub Sandbox system was used
