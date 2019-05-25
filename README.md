@@ -17,7 +17,7 @@ var employeeTimeClient = EmployeeTime.getClient({
 	}]
 });
 
-var employees = employeeTimeClient.list(EmployeeTime.queryBuilder()
+var employeeTimes = employeeTimeClient.list(EmployeeTime.queryBuilder()
 	.select(EmployeeTime.USER_ID, EmployeeTime.START_DATE, EmployeeTime.QUANTITY_IN_HOURS)
 	.filter(
 		EmployeeTime.TIME_TYPE.eq("WORK")
@@ -27,7 +27,7 @@ var employees = employeeTimeClient.list(EmployeeTime.queryBuilder()
 	.build()
 );
 
-response.println(employees);
+response.println(employeeTimes);
 ```
 
 > **Note:** In the examples, SAP API Hub Sandbox system was used
