@@ -1,1 +1,14 @@
-{"guid":"sap-successfactors-ec","repository":{"type":"git","branch":"master","url":"https://github.com/dirigiblelabs/client-sap-successfactors-ec.git"}}
+{
+	"guid": "sap-successfactors-ec",
+	"repository": {
+		"type": "git",
+		"branch": "master",
+		"url": "https://github.com/dirigiblelabs/client-sap-successfactors-ec.git"
+	},
+	"dependencies": [{
+		"guid": "sap",
+		"url": "https://github.com/dirigiblelabs/client-sap.git.git",
+		"type": "git",
+		"branch": "master"
+	}]
+}

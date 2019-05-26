@@ -1,8 +1,8 @@
 /*eslint-disable no-extend-native */
 
-var Client = require("sap-successfactors-ec/Client");
-var QueryBuilder = require("sap-successfactors-ec/QueryBuilder");
-var EmployeeTimeEntityBuilder = require("sap-successfactors-ec/TimeOff/EmployeeTimeEntityBuilder");
+var Client = require("sap/Client");
+var QueryBuilder = require("sap/QueryBuilder");
+var EmployeeTimeEntityBuilder = require("sap-successfactors-ec/TimeOff/Builders/EmployeeTimeEntityBuilder");
 
 var API_PATH = "/odata/v2/EmployeeTime";
 
