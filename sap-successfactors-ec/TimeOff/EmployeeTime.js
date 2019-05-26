@@ -72,7 +72,7 @@ function EmployeeTimeClient (configurations) {
 	};
 
 	this.get = function(id, queryParameters) {
-		var response = this.client.get(id, queryParameters);
+		var response = this.client.get(getId(id), queryParameters);
 		return response.text;
 	};
 
@@ -81,8 +81,17 @@ function EmployeeTimeClient (configurations) {
 		return response.text;
 	};
 
-	this.delete = function(id, queryParameters) {
-		var response = this.client.delete("('" + id + "')", queryParameters);
+	this.update = function(id, entity, queryParameters) {
+		var response = this.client.update(getId(id), entity, queryParameters);
 		return response.text;
 	};
+
+	this.delete = function(id, queryParameters) {
+		var response = this.client.delete(getId(id), queryParameters);
+		return response.text;
+	};
+
+	function getId(id) {
+		return "('" + id + "')";
+	}
 }
