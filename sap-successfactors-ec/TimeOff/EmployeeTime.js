@@ -4,8 +4,6 @@ var Client = require("sap/Client");
 var QueryBuilder = require("sap/QueryBuilder");
 var EmployeeTimeEntityBuilder = require("sap-successfactors-ec/TimeOff/Builders/EmployeeTimeEntityBuilder");
 
-var API_PATH = "/odata/v2/EmployeeTime";
-
 exports.APPROVAL_STATUS = "approvalStatus";
 exports.CANCELLATION_WORKFLOW_REQUEST_ID = "cancellationWorkflowRequestId";
 exports.COMMENT = "comment";
@@ -64,40 +62,27 @@ exports.getClient = function(configurations) {
 
 function EmployeeTimeClient (configurations) {
 
-	this.configurations = configurations;
+	var API_PATH = "/odata/v2/EmployeeTime";
+
+	this.client = new Client(configurations, API_PATH);
 
 	this.list = function(queryParameters) {
-		var url = getUrl() + Client.getQueryParameters(queryParameters);
-		var response = Client.execute("GET", url, getOptions());
+		var response = this.client.list(queryParameters);
 		return response.text;
 	};
 
 	this.get = function(id, queryParameters) {
-		var url = getUrl() + "('" + id + "')" + Client.getQueryParameters(queryParameters);
-		var response = Client.execute("GET", url, getOptions());
+		var response = this.client.get(id, queryParameters);
 		return response.text;
 	};
 
-	this.create = function(entity) {
-		
+	this.create = function(entity, queryParameters) {
+		var response = this.client.create(entity, queryParameters);
+		return response.text;
 	};
 
-	function getUrl() {
-		return configurations.host + API_PATH;
-	}
-
-	function getOptions(entity) {
-		var options = {
-			headers: configurations.headers,
-			sslTrustAllEnabled: true
-		};
-		if (entity !== undefined && entity !== null) {
-			options.headers.push({
-				name: "Content-Type",
-				value: "application/json"
-			});
-			options.text = JSON.stringify(entity);
-		}
-		return options;
-	}
+	this.delete = function(id, queryParameters) {
+		var response = this.client.delete("('" + id + "')", queryParameters);
+		return response.text;
+	};
 }
