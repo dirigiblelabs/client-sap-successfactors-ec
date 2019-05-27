@@ -1,0 +1,66 @@
+var Client = require("sap/Client");
+var QueryBuilder = require("sap/QueryBuilder")
+var FOEventReasonEntityBuilder = require("sap-successfactors-ec/Foundation/Builders/FOEventReasonEntityBuilder");
+
+exports.CREATED_BY = "createdBy";
+exports.CREATED_DATE_TIME = "createdDateTime";
+exports.CREATED_ON = "createdOn";
+exports.DESCRIPTION = "description";
+exports.EMPL_STATUS = "emplStatus";
+exports.END_DATE = "endDate";
+exports.EVENT = "event";
+exports.EXTERNAL_CODE = "externalCode";
+exports.IMPLICIT_POSITION_ACTION = "implicitPositionAction";
+exports.INCLUDE_IN_WORK_EXPERIENCE = "includeInWorkExperience";
+exports.LAST_MODIFIED_BY = "lastModifiedBy";
+exports.LAST_MODIFIED_DATE_TIME = "lastModifiedDateTime";
+exports.LAST_MODIFIED_ON = "lastModifiedOn";
+exports.NAME = "name";
+exports.PAYROLL_EVENT = "payrollEvent";
+exports.START_DATE = "startDate";
+exports.STATUS = "status";
+exports.DESCRIPTION_TRANSLATION_NAV = "descriptionTranslationNav";
+exports.NAME_TRANSLATION_NAV = "nameTranslationNav";
+
+exports.queryBuilder = function() {
+	return new QueryBuilder();
+};
+
+exports.entityBuilder = function() {
+	return new FOEventReasonEntityBuilder();
+};
+
+exports.getClient = function(configurations) {
+	return new FOEventReasonClient(configurations);
+};
+
+function FOEventReasonClient (configurations) {
+
+	var API_PATH = "/odata/v2/FOEventReason";
+
+	this.client = new Client(configurations, API_PATH);
+
+	this.list = function(queryParameters) {
+		return this.client.list(queryParameters);
+	};
+
+	this.get = function(id, queryParameters) {
+		return this.client.get(getId(id), queryParameters);
+	};
+
+	this.create = function(entity, queryParameters) {
+		return this.client.create(entity, queryParameters);
+	};
+
+	this.update = function(id, entity, queryParameters) {
+		return this.client.update(getId(id), entity, queryParameters);
+	};
+
+	this.delete = function(id, queryParameters) {
+		return this.client.delete(getId(id), queryParameters);
+	};
+}
+
+function getId(id) {
+	return "('" + id + "')";
+}
