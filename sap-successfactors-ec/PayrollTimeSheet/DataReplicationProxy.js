@@ -1,0 +1,83 @@
+var Client = require("sap/Client");
+var QueryBuilder = require("sap/QueryBuilder")
+var DataReplicationProxyEntityBuilder = require("sap-successfactors-ec/PayrollTimeSheet/Builders/DataReplicationProxyEntityBuilder");
+
+exports.ALLOW_REPLICATION_IN_CORRECTION_PHASE = "allowReplicationInCorrectionPhase";
+exports.CREATED_BY = "createdBy";
+exports.CREATED_DATE = "createdDate";
+exports.CREATED_DATE_TIME = "createdDateTime";
+exports.DATA_REPLICATION_PROXY_STATUS = "dataReplicationProxyStatus";
+exports.EARLIEST_REPLICATION_DATE_TIME = "earliestReplicationDateTime";
+exports.EMPLOYEE_TIME = "employeeTime";
+exports.EMPLOYEE_TIME_VALUATION_RESULT = "employeeTimeValuationResult";
+exports.EMPLOYEE_TIME_WITH_ACCOUNT_DETAIL = "employeeTimeWithAccountDetail";
+exports.EXTERNAL_CODE = "externalCode";
+exports.IS_SUBSEQUENT_CHANGE = "isSubsequentChange";
+exports.LAST_MODIFIED_BY = "lastModifiedBy";
+exports.LAST_MODIFIED_DATE = "lastModifiedDate";
+exports.LAST_MODIFIED_DATE_TIME = "lastModifiedDateTime";
+exports.LAST_MODIFIED_DATE_WITH_T_Z = "lastModifiedDateWithTZ";
+exports.LEGAL_ENTITY = "legalEntity";
+exports.MDF_SYSTEM_EFFECTIVE_END_DATE = "mdfSystemEffectiveEndDate";
+exports.MDF_SYSTEM_EFFECTIVE_START_DATE = "mdfSystemEffectiveStartDate";
+exports.MDF_SYSTEM_ENTITY_ID = "mdfSystemEntityId";
+exports.MDF_SYSTEM_OBJECT_TYPE = "mdfSystemObjectType";
+exports.MDF_SYSTEM_RECORD_ID = "mdfSystemRecordId";
+exports.MDF_SYSTEM_RECORD_STATUS = "mdfSystemRecordStatus";
+exports.MDF_SYSTEM_STATUS = "mdfSystemStatus";
+exports.MDF_SYSTEM_TRANSACTION_SEQUENCE = "mdfSystemTransactionSequence";
+exports.MDF_SYSTEM_VERSION_ID = "mdfSystemVersionId";
+exports.REPLICATION_CONTENT_TYPE = "replicationContentType";
+exports.REPLICATION_SCENARIO_OBJECT = "replicationScenarioObject";
+exports.REPLICATION_TARGET_SYSTEM = "replicationTargetSystem";
+exports.SOURCE_GENERIC_OBJECT_EXTERNAL_CODE = "sourceGenericObjectExternalCode";
+exports.SOURCE_GENERIC_OBJECT_INTERNAL_ID = "sourceGenericObjectInternalId";
+exports.TIME_ACCOUNT = "timeAccount";
+exports.TIME_ACCOUNT_PAYOUT = "timeAccountPayout";
+exports.TIME_ACCOUNT_SNAPSHOT = "timeAccountSnapshot";
+exports.USE_COST_CENTER_EXTERNAL_OBJECT_ID = "useCostCenterExternalObjectId";
+exports.USER_ID = "userId";
+exports.EMPLOYEE_TIME_VALUATION_RESULT_NAV = "employeeTimeValuationResultNav";
+
+exports.queryBuilder = function() {
+	return new QueryBuilder();
+};
+
+exports.entityBuilder = function() {
+	return new DataReplicationProxyEntityBuilder();
+};
+
+exports.getClient = function(configurations) {
+	return new DataReplicationProxyClient(configurations);
+};
+
+function DataReplicationProxyClient (configurations) {
+
+	var API_PATH = "/odata/v2/DataReplicationProxy";
+
+	this.client = new Client(configurations, API_PATH);
+
+	this.list = function(queryParameters) {
+		return this.client.list(queryParameters);
+	};
+
+	this.get = function(id, queryParameters) {
+		return this.client.get(getId(id), queryParameters);
+	};
+
+	this.create = function(entity, queryParameters) {
+		return this.client.create(entity, queryParameters);
+	};
+
+	this.update = function(id, entity, queryParameters) {
+		return this.client.update(getId(id), entity, queryParameters);
+	};
+
+	this.delete = function(id, queryParameters) {
+		return this.client.delete(getId(id), queryParameters);
+	};
+}
+
+function getId(id) {
+	return "('" + id + "')";
+}
