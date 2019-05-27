@@ -1,31 +1,20 @@
 var Client = require("sap/Client");
 var QueryBuilder = require("sap/QueryBuilder")
-var EmployeeTimeEntityBuilder = require("sap-successfactors-ec/TimeOff/Builders/EmployeeTimeEntityBuilder");
+var WorkScheduleDayModelAssignmentSegmentEntityBuilder = require("sap-successfactors-ec/TimeOff/Builders/WorkScheduleDayModelAssignmentSegmentEntityBuilder");
 
-exports.APPROVAL_STATUS = "approvalStatus";
-exports.CANCELLATION_WORKFLOW_REQUEST_ID = "cancellationWorkflowRequestId";
-exports.COMMENT = "comment";
+exports.WORK_SCHEDULE_DAY_MODEL_ASSIGNMENT_DAY = "WorkScheduleDayModelAssignment_day";
+exports.WORK_SCHEDULE_EXTERNAL_CODE = "WorkSchedule_externalCode";
+exports.CATEGORY = "category";
 exports.CREATED_BY = "createdBy";
 exports.CREATED_DATE = "createdDate";
 exports.CREATED_DATE_TIME = "createdDateTime";
-exports.CUST_DELIVERYTYPE = "cust_deliverytype";
-exports.CUST_EXPECTEDWEEK = "cust_expectedweek";
-exports.CUST_NOTIFICATIONDATE = "cust_notificationdate";
-exports.DEDUCTION_QUANTITY = "deductionQuantity";
-exports.EDITABLE = "editable";
-exports.END_DATE = "endDate";
+exports.DURATION = "duration";
 exports.END_TIME = "endTime";
 exports.EXTERNAL_CODE = "externalCode";
-exports.FLEXIBLE_REQUESTING = "flexibleRequesting";
-exports.FRACTION_QUANTITY = "fractionQuantity";
 exports.LAST_MODIFIED_BY = "lastModifiedBy";
 exports.LAST_MODIFIED_DATE = "lastModifiedDate";
 exports.LAST_MODIFIED_DATE_TIME = "lastModifiedDateTime";
 exports.LAST_MODIFIED_DATE_WITH_T_Z = "lastModifiedDateWithTZ";
-exports.LOA_ACTUAL_RETURN_DATE = "loaActualReturnDate";
-exports.LOA_END_JOB_INFO_ID = "loaEndJobInfoId";
-exports.LOA_EXPECTED_RETURN_DATE = "loaExpectedReturnDate";
-exports.LOA_START_JOB_INFO_ID = "loaStartJobInfoId";
 exports.MDF_SYSTEM_EFFECTIVE_END_DATE = "mdfSystemEffectiveEndDate";
 exports.MDF_SYSTEM_EFFECTIVE_START_DATE = "mdfSystemEffectiveStartDate";
 exports.MDF_SYSTEM_ENTITY_ID = "mdfSystemEntityId";
@@ -35,40 +24,23 @@ exports.MDF_SYSTEM_RECORD_STATUS = "mdfSystemRecordStatus";
 exports.MDF_SYSTEM_STATUS = "mdfSystemStatus";
 exports.MDF_SYSTEM_TRANSACTION_SEQUENCE = "mdfSystemTransactionSequence";
 exports.MDF_SYSTEM_VERSION_ID = "mdfSystemVersionId";
-exports.ORIGINAL_QUANTITY_IN_DAYS = "originalQuantityInDays";
-exports.QUANTITY_IN_DAYS = "quantityInDays";
-exports.QUANTITY_IN_HOURS = "quantityInHours";
-exports.RECURRENCE_GROUP = "recurrenceGroup";
-exports.START_DATE = "startDate";
 exports.START_TIME = "startTime";
-exports.TIME_RECORD_ORIGIN = "timeRecordOrigin";
-exports.TIME_TYPE = "timeType";
-exports.UNDETERMINED_END_DATE = "undeterminedEndDate";
-exports.USER_ID = "userId";
-exports.WORKFLOW_INITIATED_BY_ADMIN = "workflowInitiatedByAdmin";
-exports.WORKFLOW_REQUEST_ID = "workflowRequestId";
-exports.COUNTRY_EXTENSION_D_E_U = "countryExtensionDEU";
-exports.COUNTRY_EXTENSION_E_S_P = "countryExtensionESP";
-exports.COUNTRY_EXTENSION_M_E_X = "countryExtensionMEX";
-exports.RECURRENCE_GROUP_NAV = "recurrenceGroupNav";
-exports.TIME_CALENDAR = "timeCalendar";
-exports.TIME_TYPE_NAV = "timeTypeNav";
 
 exports.queryBuilder = function() {
 	return new QueryBuilder();
 };
 
 exports.entityBuilder = function() {
-	return new EmployeeTimeEntityBuilder();
+	return new WorkScheduleDayModelAssignmentSegmentEntityBuilder();
 };
 
 exports.getClient = function(configurations) {
-	return new EmployeeTimeClient(configurations);
+	return new WorkScheduleDayModelAssignmentSegmentClient(configurations);
 };
 
-function EmployeeTimeClient (configurations) {
+function WorkScheduleDayModelAssignmentSegmentClient (configurations) {
 
-	var API_PATH = "/odata/v2/EmployeeTime";
+	var API_PATH = "/odata/v2/WorkScheduleDayModelAssignmentSegment";
 
 	this.client = new Client(configurations, API_PATH);
 
