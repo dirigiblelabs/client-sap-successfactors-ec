@@ -7,7 +7,7 @@
 	},
 	"dependencies": [{
 		"guid": "sap",
-		"url": "https://github.com/dirigiblelabs/client-sap.git.git",
+		"url": "https://github.com/dirigiblelabs/client-sap.git",
 		"type": "git",
 		"branch": "master"
 	}]
