@@ -123,7 +123,7 @@ function generateClient(project, path, tagName, tag) {
 	var client = "";
 	client = "var Client = require(\"sap/Client\");\n";
 	client += "var QueryBuilder = require(\"sap/QueryBuilder\")\n";
-	client += "var " + tagName + "EntityBuilder = require(\"sap-successfactors-ec/" + path + "Builders/" + tagName + "EntityBuilder\");\n";
+	client += "var " + tagName + "EntityBuilder = require(\"" + project + "/" + path + "Builders/" + tagName + "EntityBuilder\");\n";
 	client += "\n";
 	for (var i = 0; i < tag.properties.length; i ++) {
 		client += "exports." + tag.properties[i].id + " = \"" + tag.properties[i].value + "\";\n";
@@ -165,6 +165,10 @@ function generateClient(project, path, tagName, tag) {
 	client += "\n";
 	client += "	this.delete = function(id, queryParameters) {\n";
 	client += "		return this.client.delete(getId(id), queryParameters);\n";
+	client += "	};\n";
+	client += "\n";
+	client += "	this.count = function() {\n";
+	client += "		return this.client.get(\"/$count\");\n";
 	client += "	};\n";
 	client += "}\n";
 	client += "\n";
