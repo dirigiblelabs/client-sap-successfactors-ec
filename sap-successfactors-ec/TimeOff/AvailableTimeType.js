@@ -63,6 +63,10 @@ function AvailableTimeTypeClient (configurations) {
 	this.delete = function(id, queryParameters) {
 		return this.client.delete(getId(id), queryParameters);
 	};
+
+	this.count = function() {
+		return this.client.get("/$count");
+	};
 }
 
 function getId(id) {
