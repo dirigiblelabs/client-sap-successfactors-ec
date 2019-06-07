@@ -27,7 +27,7 @@ var employeeTimes = employeeTimeClient.list(EmployeeTime.queryBuilder()
 	.build()
 );
 
-response.println(employeeTimes);
+response.println(JSON.stringify(employeeTimes));
 ```
 
 > **Note:** In the examples SAP API Hub Sandbox system was used
