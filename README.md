@@ -30,6 +30,60 @@ var employeeTimes = employeeTimeClient.list(EmployeeTime.queryBuilder()
 response.println(JSON.stringify(employeeTimes));
 ```
 
+## Usage (Async):
+
+```javascript
+var EmployeeTime = require("sap-successfactors-ec/TimeOff/EmployeeTime");
+
+var employeeTimeClientAsync = EmployeeTime.getClientAsync({
+	host: "https://sandbox.api.sap.com/successfactors",
+	headers: [{
+		name: "apikey",
+		value: "<YOUR-API-KEY>"
+	}]
+});
+
+employeeTimeClientAsync.listAsync({
+	success: function(response, context) {
+		console.log("Employee Times count: " + JSON.parse(response.text).d.results.length);
+	}
+}, EmployeeTime.queryBuilder()
+	.select(
+		EmployeeTime.USER_ID,
+		EmployeeTime.START_DATE,
+		EmployeeTime.QUANTITY_IN_HOURS
+	)
+	.filter(
+		EmployeeTime.TIME_TYPE.eq("WORK")
+		.and(EmployeeTime.START_DATE.ge(new Date(1460505600000)))
+	)
+	.top(3)
+	.format("json")
+	.build(), {
+		context: {
+			data1: "Pass some contex parameters",
+			data2: "..."
+		}
+	}
+);
+
+var employeeTimes = employeeTimeClient.list(EmployeeTime.queryBuilder()
+	.select(
+		EmployeeTime.USER_ID,
+		EmployeeTime.START_DATE,
+		EmployeeTime.QUANTITY_IN_HOURS
+	)
+	.filter(
+		EmployeeTime.TIME_TYPE.eq("WORK")
+		.and(EmployeeTime.START_DATE.ge(new Date(1460505600000)))
+	)
+	.top(3)
+	.format("json")
+	.build()
+);
+
+```
+
 > **Note:** In the examples SAP API Hub Sandbox system was used
 
 ## Generator:
