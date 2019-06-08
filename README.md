@@ -67,21 +67,7 @@ employeeTimeClientAsync.listAsync({
 	}
 );
 
-var employeeTimes = employeeTimeClient.list(EmployeeTime.queryBuilder()
-	.select(
-		EmployeeTime.USER_ID,
-		EmployeeTime.START_DATE,
-		EmployeeTime.QUANTITY_IN_HOURS
-	)
-	.filter(
-		EmployeeTime.TIME_TYPE.eq("WORK")
-		.and(EmployeeTime.START_DATE.ge(new Date(1460505600000)))
-	)
-	.top(3)
-	.format("json")
-	.build()
-);
-
+employeeTimeClientAsync.execute();
 ```
 
 > **Note:** In the examples SAP API Hub Sandbox system was used
