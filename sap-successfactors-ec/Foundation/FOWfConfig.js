@@ -1,4 +1,5 @@
 var Client = require("sap/Client");
+var ClientAsync = require("sap/ClientAsync");
 var QueryBuilder = require("sap/QueryBuilder")
 var FOWfConfigEntityBuilder = require("sap-successfactors-ec/Foundation/Builders/FOWfConfigEntityBuilder");
 
@@ -42,6 +43,10 @@ exports.getClient = function(configurations) {
 	return new FOWfConfigClient(configurations);
 };
 
+exports.getClientAsync = function(configurations) {
+	return new FOWfConfigClientAsync(configurations);
+};
+
 function FOWfConfigClient (configurations) {
 
 	var API_PATH = "/odata/v2/FOWfConfig";
@@ -70,6 +75,41 @@ function FOWfConfigClient (configurations) {
 
 	this.count = function() {
 		return this.client.get("/$count");
+	};
+}
+
+function FOWfConfigClientAsync (configurations) {
+
+	var API_PATH = "/odata/v2/FOWfConfig";
+
+	this.client = new ClientAsync(configurations, API_PATH);
+
+	this.listAsync = function(callback, queryParameters, options) {
+		return this.client.listAsync(callback, queryParameters, options);
+	};
+
+	this.getAsync = function(callback, id, queryParameters, options) {
+		return this.client.getAsync(callback, getId(id), queryParameters, options);
+	};
+
+	this.createAsync = function(callback, entity, queryParameters, options) {
+		return this.client.createAsync(callback, entity, queryParameters, options);
+	};
+
+	this.updateAsync = function(callback, id, entity, queryParameters, options) {
+		return this.client.update(callback, getId(id), entity, queryParameters, options);
+	};
+
+	this.deleteAsync = function(callback, id, queryParameters, options) {
+		return this.client.deleteAsync(callback, getId(id), queryParameters, options);
+	};
+
+	this.countAsync = function(callback) {
+		return this.client.getAsync(callback, "/$count");
+	};
+
+	this.execute = function() {
+		return this.client.execute();
 	};
 }
 
