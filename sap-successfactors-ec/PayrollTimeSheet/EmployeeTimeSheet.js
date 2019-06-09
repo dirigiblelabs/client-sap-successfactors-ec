@@ -60,24 +60,24 @@ function EmployeeTimeSheetClient (configurations) {
 
 	this.client = new Client(configurations, API_PATH);
 
-	this.list = function(queryParameters) {
-		return this.client.list(queryParameters);
+	this.list = function(queryParameters, options) {
+		return this.client.list(queryParameters, options);
 	};
 
-	this.get = function(id, queryParameters) {
-		return this.client.get(getId(id), queryParameters);
+	this.get = function(id, queryParameters, options) {
+		return this.client.get(getId(id), queryParameters, options);
 	};
 
-	this.create = function(entity, queryParameters) {
-		return this.client.create(entity, queryParameters);
+	this.create = function(entity, queryParameters, options) {
+		return this.client.create(entity, queryParameters, options);
 	};
 
-	this.update = function(id, entity, queryParameters) {
-		return this.client.update(getId(id), entity, queryParameters);
+	this.update = function(id, entity, queryParameters, options) {
+		return this.client.update(getId(id), entity, queryParameters, options);
 	};
 
-	this.delete = function(id, queryParameters) {
-		return this.client.delete(getId(id), queryParameters);
+	this.delete = function(id, queryParameters, options) {
+		return this.client.delete(getId(id), queryParameters, options);
 	};
 
 	this.count = function() {
