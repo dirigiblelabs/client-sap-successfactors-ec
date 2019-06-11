@@ -71,8 +71,8 @@ function RelevantIndustryContentClient (configurations) {
 		return this.client.delete(getId(id), queryParameters, options);
 	};
 
-	this.count = function() {
-		return this.client.get("/$count");
+	this.count = function(queryParameters, options) {
+		return this.client.get("/$count", queryParameters, options);
 	};
 }
 
@@ -102,8 +102,8 @@ function RelevantIndustryContentClientAsync (configurations) {
 		return this.client.deleteAsync(callback, getId(id), queryParameters, options);
 	};
 
-	this.countAsync = function(callback) {
-		return this.client.getAsync(callback, "/$count");
+	this.countAsync = function(callback, queryParameters, options) {
+		return this.client.getAsync(callback, "/$count", queryParameters, options);
 	};
 
 	this.execute = function() {
