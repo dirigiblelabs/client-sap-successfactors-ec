@@ -2,7 +2,7 @@
 	"guid": "sap-successfactors-ec",
 	"repository": {
 		"type": "git",
-		"branch": "master",
+		"branch": "TimeOff",
 		"url": "https://github.com/dirigiblelabs/client-sap-successfactors-ec.git"
 	},
 	"dependencies": [{
